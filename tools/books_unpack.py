@@ -15,7 +15,10 @@ from bs4 import BeautifulSoup
 from config import DIR_BOOKS, DIR_DUMP_BOOKS
 
 
-URL = 'https://gist.github.com/gil9red/b404932c6118a92bba9180d2f20fe801'
+URL = base64.b64decode(
+    b'aHR0cHM6Ly9naXN0LmdpdGh1Yi5jb20vZ2lsOXJlZC9iNDA0OTMyYzYxMThhOTJiYmE5MTgwZDJmMjBmZTgwMQ=='
+).decode('utf-8')
+
 
 session = requests.session()
 session.headers['User-Agent'] = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:83.0) Gecko/20100101 Firefox/83.0'
