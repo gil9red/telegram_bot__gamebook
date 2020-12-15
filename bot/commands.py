@@ -23,13 +23,11 @@ from bot.book_helper import BookHelper
 from bot.db import VisitedPage
 from bot.regexp import (
     fill_string_pattern, PATTERN_BOOK, PATTERN_BOOK_PAGE, PATTERN_BOOK_IMAGE, PATTERN_BOOK_ANNOTATION,
-    PATTERN_SELECT_BOOKS, PATTERN_DELETE_MESSAGE, PATTERN_GET_PAGE, PATTERN_ON_CLEAR
+    PATTERN_SELECT_BOOKS, PATTERN_DELETE_MESSAGE, PATTERN_GET_PAGE, PATTERN_ON_HELP, PATTERN_ON_CLEAR
 )
 
 
-@catch_error(log)
-@log_func(log)
-def on_start(update: Update, context: CallbackContext):
+def reply_help(update: Update, context: CallbackContext):
     reply_markup = ReplyKeyboardMarkup.from_button(
         text_of.BTN_TO_SELECT_BOOKS, resize_keyboard=True
     )
@@ -38,6 +36,18 @@ def on_start(update: Update, context: CallbackContext):
         text_of.WELCOME,
         reply_markup=reply_markup,
     )
+
+
+@catch_error(log)
+@log_func(log)
+def on_start(update: Update, context: CallbackContext):
+    reply_help(update, context)
+
+
+@catch_error(log)
+@log_func(log)
+def on_help(update: Update, context: CallbackContext):
+    reply_help(update, context)
 
 
 @catch_error(log)
@@ -283,6 +293,7 @@ def setup(updater: Updater):
     dp = updater.dispatcher
 
     dp.add_handler(CommandHandler('start', on_start, run_async=True))
+    dp.add_handler(MessageHandler(Filters.regex(PATTERN_ON_HELP), on_help, run_async=True))
 
     # Команда админа: получение конкретной страницы в книге
     dp.add_handler(MessageHandler(FILTER_BY_ADMIN & Filters.regex(PATTERN_GET_PAGE), on_get_page, run_async=True))

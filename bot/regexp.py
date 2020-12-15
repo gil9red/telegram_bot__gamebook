@@ -15,6 +15,7 @@ PATTERN_SELECT_BOOKS = re.compile(r'^show_book_(\d+)$')
 PATTERN_GET_PAGE = re.compile(r'^([a-fA-F\d]+) (\d+)$')
 PATTERN_DELETE_MESSAGE = re.compile('^delete_message$')
 PATTERN_ON_CLEAR = re.compile('(?i)^clear$')
+PATTERN_ON_HELP = re.compile('(?i)^help|помощь$')
 
 
 def fill_string_pattern(pattern: re.Pattern, *args) -> str:
