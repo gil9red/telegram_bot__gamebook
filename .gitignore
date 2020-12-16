@@ -127,3 +127,10 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# For the current bot only
+books/
+dump_books/
+database/
+make_requirements.bat
+TOKEN.txt
