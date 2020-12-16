@@ -17,6 +17,8 @@ from tools.parsers.utils import (
 )
 
 
+DIR = Path(__file__).resolve().parent
+
 # Страницы, в которых нужно монету подбрасывать
 COIN_FLIP = [
     '45'
@@ -40,7 +42,7 @@ def get_images(tags: List[Tag]) -> List[str]:
     return items
 
 
-file_name = Path('Ужастики-2') / 'chelovekoszhimalki_RuLit_Net_264788.fb2'
+file_name = DIR / 'Ужастики-2' / 'chelovekoszhimalki_RuLit_Net_264788.fb2'
 print(file_name)
 
 root = parse(file_name.read_bytes())
@@ -56,7 +58,7 @@ print('sequence_num:', book.sequence_num)
 print('publisher:', book.publisher)
 print('images:', list(book.images))
 
-dir_book = DIR_DUMP_BOOKS / file_name
+dir_book = DIR_DUMP_BOOKS / file_name.name
 
 section_by_tags = defaultdict(list)
 tags = None

@@ -16,6 +16,9 @@ from tools.parsers.utils import (
 )
 
 
+DIR = Path(__file__).resolve().parent
+
+
 def is_start_section(tag: Tag) -> bool:
     if tag.name != 'p':
         return False
@@ -24,7 +27,7 @@ def is_start_section(tag: Tag) -> bool:
     return value.isdigit()
 
 
-file_name = Path('Ужастики-2') / 'noch-v-lesu-oborotnej_RuLiter_Ru_12541.fb2'
+file_name = DIR / 'Ужастики-2' / 'noch-v-lesu-oborotnej_RuLiter_Ru_12541.fb2'
 print(file_name)
 
 root = parse(file_name.read_bytes())
@@ -40,7 +43,7 @@ print('sequence_num:', book.sequence_num)
 print('publisher:', book.publisher)
 print('images:', list(book.images))
 
-dir_book = DIR_DUMP_BOOKS / file_name
+dir_book = DIR_DUMP_BOOKS / file_name.name
 
 section_by_tags = defaultdict(list)
 tags = None
