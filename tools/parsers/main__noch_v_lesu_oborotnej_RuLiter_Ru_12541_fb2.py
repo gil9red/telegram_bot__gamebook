@@ -7,8 +7,6 @@ __author__ = 'ipetrash'
 from collections import defaultdict
 from pathlib import Path
 
-from bs4 import Tag
-
 from config import DIR_DUMP_BOOKS
 from tools.parsers.book import parse_book_info
 from tools.parsers.utils import (
@@ -17,15 +15,6 @@ from tools.parsers.utils import (
 
 
 DIR = Path(__file__).resolve().parent
-
-
-def is_start_section(tag: Tag) -> bool:
-    if tag.name != 'p':
-        return False
-
-    value = get_plaintext(tag).lower()
-    return value.isdigit()
-
 
 file_name = DIR / 'Ужастики-2' / 'noch-v-lesu-oborotnej_RuLiter_Ru_12541.fb2'
 print(file_name)
