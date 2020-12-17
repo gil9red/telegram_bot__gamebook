@@ -14,7 +14,7 @@ DIR = Path(__file__).resolve().parent
 DIR_PARSERS = DIR / 'parsers'
 
 
-for file_name in DIR_PARSERS.glob('main__*.fb2.py'):
+for file_name in DIR_PARSERS.glob('main__*fb2.py'):
     file_name = str(file_name)
     print('[RUN]:', file_name)
 
