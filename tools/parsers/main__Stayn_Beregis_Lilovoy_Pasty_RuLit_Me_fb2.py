@@ -46,7 +46,6 @@ i = 0
 for section_el in root.select('body > section[id]'):
     i += 1
     # print(f'{i:4}.')
-    # print(f'{i:4}.', is_start_section(tag), tag.name, repr(str(tag)))
 
     # Удаление тегов вида: <a l:href="#n_23" type="note">*</a>
     for note_tag in section_el.select('a[type="note"]'):
