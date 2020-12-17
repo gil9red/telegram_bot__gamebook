@@ -18,6 +18,7 @@ from tools.parsers.utils import (
 
 
 DIR = Path(__file__).resolve().parent
+file_name = DIR / 'Ужастики-2' / 'chelovekoszhimalki_RuLit_Net_264788.fb2'
 
 # Страницы, в которых нужно монету подбрасывать
 COIN_FLIP = [
@@ -108,5 +109,4 @@ def parse_fb2(file_name: Path, coin_flip: List[str]):
 
 
 if __name__ == '__main__':
-    file_name = DIR / 'Ужастики-2' / 'chelovekoszhimalki_RuLit_Net_264788.fb2'
     parse_fb2(file_name, COIN_FLIP)
