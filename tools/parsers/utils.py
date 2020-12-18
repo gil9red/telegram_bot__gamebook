@@ -13,7 +13,7 @@ import bleach
 from bs4 import BeautifulSoup, Tag
 
 
-PATTERN_PAGE = re.compile(r'страниц. (\d+)', flags=re.IGNORECASE)
+PATTERN_PAGE = re.compile(r'страниц.\s*(\d+)', flags=re.IGNORECASE)
 PATTERN_END = re.compile(r'конец|концу', flags=re.IGNORECASE)
 
 
