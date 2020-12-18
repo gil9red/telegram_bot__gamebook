@@ -29,6 +29,10 @@ def remove_cycles(book: 'BookHelper'):
     # Попробуем определить какие страницы в цикле шли раньше других, чтобы
     # правильно удалить зациклинность
     for edge in cycles:
+        # TODO: костыль для chelovekoszhimalki_RuLit_Net_264788.fb2
+        if len(edge) != 2:
+            continue
+
         new_edge = None
         node_1, node_2 = edge
 
