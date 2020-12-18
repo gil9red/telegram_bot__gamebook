@@ -13,11 +13,10 @@ from bs4 import Tag
 from config import DIR_DUMP_BOOKS
 from tools.parsers.book import parse_book_info
 from tools.parsers.utils import (
-    parse, get_plaintext, get_section_text, get_href, preprocess_tags, get_transitions
+    parse, get_plaintext, get_section_text, get_href, preprocess_tags, get_transitions, DIR
 )
 
 
-DIR = Path(__file__).resolve().parent
 file_name = DIR / 'Ужастики-2' / 'chelovekoszhimalki_RuLit_Net_264788.fb2'
 
 # Страницы, в которых нужно монету подбрасывать

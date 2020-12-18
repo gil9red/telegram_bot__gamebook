@@ -10,11 +10,8 @@ from pathlib import Path
 from config import DIR_DUMP_BOOKS
 from tools.parsers.book import parse_book_info
 from tools.parsers.utils import (
-    parse, get_section_text, preprocess_tags, get_transitions, clear_number, get_images
+    parse, get_section_text, preprocess_tags, get_transitions, clear_number, get_images, DIR
 )
-
-
-DIR = Path(__file__).resolve().parent
 
 
 def parse_fb2(file_name: Path, get_transitions_func: Callable = None, coin_flip: List[str] = None):

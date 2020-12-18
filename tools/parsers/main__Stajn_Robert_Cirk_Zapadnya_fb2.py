@@ -4,11 +4,10 @@
 __author__ = 'ipetrash'
 
 
-from pathlib import Path
+from tools.parsers.utils import DIR
 from tools.parsers.main__chelovekoszhimalki_RuLit_Net_264788_fb2 import parse_fb2
 
 
-DIR = Path(__file__).resolve().parent
 file_name = DIR / 'Ужастики-2' / 'Stajn_Robert_-_Cirk-Zapadnya.fb2'
 
 # Страницы, в которых нужно монету подбрасывать

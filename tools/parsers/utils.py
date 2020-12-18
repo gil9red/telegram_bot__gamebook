@@ -5,6 +5,7 @@ __author__ = 'ipetrash'
 
 
 import re
+from pathlib import Path
 from typing import Optional, List
 
 # pip install bleach
@@ -12,6 +13,8 @@ import bleach
 
 from bs4 import BeautifulSoup, Tag
 
+
+DIR = Path(__file__).resolve().parent
 
 PATTERN_PAGE = re.compile(r'страниц.\s*(\d+)', flags=re.IGNORECASE)
 PATTERN_END = re.compile(r'конец|концу', flags=re.IGNORECASE)

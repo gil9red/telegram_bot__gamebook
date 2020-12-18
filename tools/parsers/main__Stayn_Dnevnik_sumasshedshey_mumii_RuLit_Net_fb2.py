@@ -4,13 +4,10 @@
 __author__ = 'ipetrash'
 
 
-from pathlib import Path
-
 from tools.parsers.main__noch_v_lesu_oborotnej_RuLiter_Ru_12541_fb2 import parse_fb2
-from tools.parsers.utils import get_transitions
+from tools.parsers.utils import get_transitions, DIR
 
 
-DIR = Path(__file__).resolve().parent
 file_name = DIR / 'Ужастики-2' / 'Stayn_Dnevnik_sumasshedshey_mumii_RuLit_Net.fb2'
 
 # Страницы, в которых нужно монету подбрасывать
