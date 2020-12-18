@@ -4,7 +4,7 @@
 __author__ = 'ipetrash'
 
 
-from typing import Callable
+from typing import Callable, List
 from pathlib import Path
 
 from config import DIR_DUMP_BOOKS
@@ -17,7 +17,7 @@ from tools.parsers.utils import (
 DIR = Path(__file__).resolve().parent
 
 
-def parse_fb2(file_name: Path, get_transitions_func: Callable = None):
+def parse_fb2(file_name: Path, get_transitions_func: Callable = None, coin_flip: List[str] = None):
     print(file_name)
 
     root = parse(file_name.read_bytes())
@@ -57,11 +57,17 @@ def parse_fb2(file_name: Path, get_transitions_func: Callable = None):
         section_tag = parse(''.join(map(str, tags)))
         html_section = get_section_text(section_tag, None if section_id == '0' else section_id)
 
+        if coin_flip:
+            is_coin_flip = section in coin_flip
+        else:
+            is_coin_flip = False
+
         book.add_section(
             id=section_id,
             text=html_section,
             transitions=transitions,
             images=images,
+            coin_flip=is_coin_flip,
         )
 
     print('sections:', len(book.sections))
