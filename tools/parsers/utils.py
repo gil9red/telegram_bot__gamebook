@@ -45,7 +45,10 @@ def get_plaintext(element: Tag) -> str:
             items.append(elem.strip())
         elif elem.name in ['br', 'p']:
             items.append('\n')
-    return ''.join(items).strip()
+
+    text = ' '.join(items).strip()
+    text = re.sub(' {2,}', ' ', text)
+    return text
 
 
 def get_section_text(
