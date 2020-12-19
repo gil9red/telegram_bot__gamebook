@@ -129,14 +129,15 @@ def on_callback_book(update: Update, context: CallbackContext):
             book.get_button_annotation()
         )
 
-    if book.images:
-        button_row1.append(
-            book.get_button_all_images()
-        )
-
     buttons = []
     if button_row1:
         buttons.append(button_row1)
+
+    if book.images:
+        buttons.append(
+            [book.get_button_all_images()]
+        )
+
     buttons.append([book.get_button_first_page(text=text_of.BTN_START)])
 
     reply_markup = InlineKeyboardMarkup(buttons)
