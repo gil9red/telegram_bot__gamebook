@@ -10,6 +10,7 @@ import re
 PATTERN_BOOK = re.compile(r'^book_([a-fA-F\d]+)$')
 PATTERN_BOOK_PAGE = re.compile(r'^([a-fA-F\d]+)_page_from_(\d+)_to_(\d+)$')
 PATTERN_BOOK_IMAGE = re.compile(r'^([a-fA-F\d]+)_image_(.+)$')
+PATTERN_BOOK_ALL_IMAGES = re.compile(r'^([a-fA-F\d]+)_all_images$')
 PATTERN_BOOK_ANNOTATION = re.compile(r'^([a-fA-F\d]+)_annotation$')
 PATTERN_SELECT_BOOKS = re.compile(r'^show_book_(\d+)$')
 PATTERN_GET_PAGE = re.compile(r'^([a-fA-F\d]+) (\d+)$')

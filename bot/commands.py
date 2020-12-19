@@ -23,7 +23,8 @@ from bot.book_helper import BookHelper
 from bot.db import VisitedPage
 from bot.regexp import (
     fill_string_pattern, PATTERN_BOOK, PATTERN_BOOK_PAGE, PATTERN_BOOK_IMAGE, PATTERN_BOOK_ANNOTATION,
-    PATTERN_SELECT_BOOKS, PATTERN_DELETE_MESSAGE, PATTERN_GET_PAGE, PATTERN_ON_HELP, PATTERN_ON_CLEAR
+    PATTERN_SELECT_BOOKS, PATTERN_DELETE_MESSAGE, PATTERN_GET_PAGE, PATTERN_ON_HELP, PATTERN_ON_CLEAR,
+    PATTERN_BOOK_ALL_IMAGES
 )
 
 
@@ -128,6 +129,11 @@ def on_callback_book(update: Update, context: CallbackContext):
             book.get_button_annotation()
         )
 
+    if book.images:
+        button_row1.append(
+            book.get_button_all_images()
+        )
+
     buttons = []
     if button_row1:
         buttons.append(button_row1)
@@ -166,6 +172,25 @@ def on_callback_annotation(update: Update, context: CallbackContext):
         book.annotation,
         parse_mode=ParseMode.HTML,
         reply_markup=reply_markup,
+    )
+
+
+@catch_error(log)
+@log_func(log)
+def on_callback_all_images(update: Update, context: CallbackContext):
+    query = update.callback_query
+    query.answer()
+
+    _, book = get_book_id(context)
+
+    media = [
+        InputMediaPhoto(book.get_image_io(image_name)) for image_name in book.images
+    ]
+    media[0].caption = text_of.BTN_ALL_IMAGES
+
+    query.message.reply_media_group(
+        media=media,
+        reply_to_message_id=query.message.message_id
     )
 
 
@@ -308,6 +333,7 @@ def setup(updater: Updater):
     dp.add_handler(CallbackQueryHandler(on_callback_book, pattern=PATTERN_BOOK, run_async=True))
     dp.add_handler(CallbackQueryHandler(on_callback_page, pattern=PATTERN_BOOK_PAGE, run_async=True))
     dp.add_handler(CallbackQueryHandler(on_callback_annotation, pattern=PATTERN_BOOK_ANNOTATION, run_async=True))
+    dp.add_handler(CallbackQueryHandler(on_callback_all_images, pattern=PATTERN_BOOK_ALL_IMAGES, run_async=True))
     dp.add_handler(CallbackQueryHandler(on_callback_image, pattern=PATTERN_BOOK_IMAGE, run_async=True))
     dp.add_handler(CallbackQueryHandler(on_callback_delete_message, pattern=PATTERN_DELETE_MESSAGE, run_async=True))
 

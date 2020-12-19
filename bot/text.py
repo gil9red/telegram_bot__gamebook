@@ -18,6 +18,7 @@ BTN_RENEW = '🔄 Заново'
 BTN_COVER = '📕 Обложка'
 BTN_BACK = '⬅️ Назад'
 BTN_ANNOTATION = '📜 Аннотация'
+BTN_ALL_IMAGES = '🖼️ Все картинки'
 BTN_SHOW_IMAGE = '🖼️ Посмотреть картинку'
 BTN_HIDE_IMAGE = '❌ Спрятать картинку'
 BTN_TO_SELECT_BOOKS = "📖 К списку книг!"

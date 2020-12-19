@@ -17,7 +17,8 @@ import networkx as nx
 
 from bot import text as text_of
 from bot.regexp import (
-    fill_string_pattern, PATTERN_BOOK, PATTERN_BOOK_PAGE, PATTERN_BOOK_IMAGE, PATTERN_BOOK_ANNOTATION
+    fill_string_pattern, PATTERN_BOOK, PATTERN_BOOK_PAGE,
+    PATTERN_BOOK_IMAGE, PATTERN_BOOK_ANNOTATION, PATTERN_BOOK_ALL_IMAGES
 )
 from bot import emoji
 from bot.common import join_page, pairwise, shorten
@@ -70,6 +71,7 @@ class BookHelper:
         self.sequence_num = self.book_info['sequence_num']
         self.publisher = self.book_info['publisher']
         self.sections = self.book_info['sections']
+        self.images = self.book_info['images']
 
         self.first_page: str = min(list(self.sections.keys()), key=lambda x: int(x))
 
@@ -141,6 +143,10 @@ class BookHelper:
     def get_button_image(self, text: str, img_name: str) -> InlineKeyboardButton:
         callback_data = fill_string_pattern(PATTERN_BOOK_IMAGE, self.id, img_name)
         return InlineKeyboardButton(text=text, callback_data=callback_data)
+
+    def get_button_all_images(self) -> InlineKeyboardButton:
+        callback_data = fill_string_pattern(PATTERN_BOOK_ALL_IMAGES, self.id)
+        return InlineKeyboardButton(text=text_of.BTN_ALL_IMAGES, callback_data=callback_data)
 
     def get_button_annotation(self) -> InlineKeyboardButton:
         callback_data = fill_string_pattern(PATTERN_BOOK_ANNOTATION, self.id)
