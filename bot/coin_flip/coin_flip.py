@@ -54,7 +54,7 @@ def on_callback_coin_flip(update: Update, context: CallbackContext):
             f,
             caption=f"{text_of.BTN_COIN_FLIP_RESULT}: {value}",
             reply_markup=reply_markup,
-            reply_to_message_id=message.message_id
+            quote=True
         )
     else:
         message.edit_media(

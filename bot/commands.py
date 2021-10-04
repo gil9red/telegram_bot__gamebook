@@ -189,10 +189,7 @@ def on_callback_all_images(update: Update, context: CallbackContext):
     ]
     media[0].caption = text_of.BTN_ALL_IMAGES
 
-    query.message.reply_media_group(
-        media=media,
-        reply_to_message_id=query.message.message_id
-    )
+    query.message.reply_media_group(media=media, quote=True)
 
 
 def get_book_page(book: BookHelper, page: str, update: Update) -> Tuple[str, InlineKeyboardMarkup]:
@@ -295,7 +292,7 @@ def on_callback_image(update: Update, context: CallbackContext):
     query.message.reply_photo(
         photo=book.get_image_io(image_name),
         reply_markup=reply_markup,
-        reply_to_message_id=query.message.message_id
+        quote=True
     )
 
 
