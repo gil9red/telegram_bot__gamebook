@@ -8,8 +8,7 @@ import os
 import time
 
 # pip install python-telegram-bot
-from telegram.ext import Updater
-from telegram.ext.defaults import Defaults
+from telegram.ext import Updater, Defaults
 
 from config import TOKEN
 from bot.common import log
