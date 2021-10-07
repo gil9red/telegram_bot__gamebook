@@ -9,6 +9,7 @@ import time
 
 # pip install python-telegram-bot
 from telegram.ext import Updater
+from telegram.ext.defaults import Defaults
 
 from config import TOKEN
 from bot.common import log
@@ -18,14 +19,14 @@ from bot import commands
 def main():
     cpu_count = os.cpu_count()
     workers = cpu_count
-    log.debug('System: CPU_COUNT=%s, WORKERS=%s', cpu_count, workers)
+    log.debug(f'System: CPU_COUNT={cpu_count}, WORKERS={workers}')
 
     log.debug('Start')
 
     updater = Updater(
         TOKEN,
         workers=workers,
-        use_context=True
+        defaults=Defaults(run_async=True),
     )
     commands.setup(updater)
 
