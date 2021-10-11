@@ -315,26 +315,26 @@ def on_error(update: Update, context: CallbackContext):
 def setup(updater: Updater):
     dp = updater.dispatcher
 
-    dp.add_handler(CommandHandler('start', on_start, run_async=True))
-    dp.add_handler(MessageHandler(Filters.regex(PATTERN_ON_HELP), on_help, run_async=True))
+    dp.add_handler(CommandHandler('start', on_start))
+    dp.add_handler(MessageHandler(Filters.regex(PATTERN_ON_HELP), on_help))
 
     # Команда админа: получение конкретной страницы в книге
-    dp.add_handler(MessageHandler(FILTER_BY_ADMIN & Filters.regex(PATTERN_GET_PAGE), on_get_page, run_async=True))
+    dp.add_handler(MessageHandler(FILTER_BY_ADMIN & Filters.regex(PATTERN_GET_PAGE), on_get_page))
 
     # Команда админа: очищение базы данных
-    dp.add_handler(CommandHandler('clear', on_clear, FILTER_BY_ADMIN, run_async=True))
-    dp.add_handler(MessageHandler(FILTER_BY_ADMIN & Filters.regex(PATTERN_ON_CLEAR), on_clear, run_async=True))
+    dp.add_handler(CommandHandler('clear', on_clear, FILTER_BY_ADMIN))
+    dp.add_handler(MessageHandler(FILTER_BY_ADMIN & Filters.regex(PATTERN_ON_CLEAR), on_clear))
 
-    dp.add_handler(MessageHandler(Filters.text, on_select_books, run_async=True))
-    dp.add_handler(CallbackQueryHandler(on_callback_select_books, pattern=PATTERN_SELECT_BOOKS, run_async=True))
+    dp.add_handler(MessageHandler(Filters.text, on_select_books))
+    dp.add_handler(CallbackQueryHandler(on_callback_select_books, pattern=PATTERN_SELECT_BOOKS))
 
-    dp.add_handler(CallbackQueryHandler(on_callback_book, pattern=PATTERN_BOOK, run_async=True))
-    dp.add_handler(CallbackQueryHandler(on_callback_page, pattern=PATTERN_BOOK_PAGE, run_async=True))
-    dp.add_handler(CallbackQueryHandler(on_callback_annotation, pattern=PATTERN_BOOK_ANNOTATION, run_async=True))
-    dp.add_handler(CallbackQueryHandler(on_callback_all_images, pattern=PATTERN_BOOK_ALL_IMAGES, run_async=True))
-    dp.add_handler(CallbackQueryHandler(on_callback_image, pattern=PATTERN_BOOK_IMAGE, run_async=True))
-    dp.add_handler(CallbackQueryHandler(on_callback_delete_message, pattern=PATTERN_DELETE_MESSAGE, run_async=True))
+    dp.add_handler(CallbackQueryHandler(on_callback_book, pattern=PATTERN_BOOK))
+    dp.add_handler(CallbackQueryHandler(on_callback_page, pattern=PATTERN_BOOK_PAGE))
+    dp.add_handler(CallbackQueryHandler(on_callback_annotation, pattern=PATTERN_BOOK_ANNOTATION))
+    dp.add_handler(CallbackQueryHandler(on_callback_all_images, pattern=PATTERN_BOOK_ALL_IMAGES))
+    dp.add_handler(CallbackQueryHandler(on_callback_image, pattern=PATTERN_BOOK_IMAGE))
+    dp.add_handler(CallbackQueryHandler(on_callback_delete_message, pattern=PATTERN_DELETE_MESSAGE))
 
     coin_flip.setup(updater)
 
-    dp.add_error_handler(on_error, run_async=True)
+    dp.add_error_handler(on_error)
